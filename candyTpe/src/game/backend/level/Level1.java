@@ -32,20 +32,14 @@ public class Level1 extends Grid {
 		g()[SIZE-1][0].setAround(g()[SIZE-2][0], wallCell, wallCell, g()[SIZE-1][1]);
 		g()[SIZE-1][SIZE-1].setAround(g()[SIZE-2][SIZE-1], wallCell, g()[SIZE-1][SIZE-2], wallCell);
 
-		//upper line cells
+		//upper and bottom line cells
 		for (int j = 1; j < SIZE-1; j++) {
 			g()[0][j].setAround(candyGenCell,g()[1][j],g()[0][j-1],g()[0][j+1]);
-		}
-		//bottom line cells
-		for (int j = 1; j < SIZE-1; j++) {
 			g()[SIZE-1][j].setAround(g()[SIZE-2][j], wallCell, g()[SIZE-1][j-1],g()[SIZE-1][j+1]);
 		}
-		//left line cells
+		//left and right line cells
 		for (int i = 1; i < SIZE-1; i++) {
 			g()[i][0].setAround(g()[i-1][0],g()[i+1][0], wallCell ,g()[i][1]);
-		}
-		//right line cells
-		for (int i = 1; i < SIZE-1; i++) {
 			g()[i][SIZE-1].setAround(g()[i-1][SIZE-1],g()[i+1][SIZE-1], g()[i][SIZE-2], wallCell);
 		}		
 		//central cells

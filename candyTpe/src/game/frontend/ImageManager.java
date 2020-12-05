@@ -29,19 +29,13 @@ public class ImageManager {
 		images.put(new Wall().getKey(),  new Image(IMAGE_PATH + "wall.png"));
 		for (CandyColor cc: CandyColor.values()) {
 			images.put(new Candy(cc).getFullKey(),   new Image(IMAGE_PATH + cc.toString().toLowerCase() + "Candy.png"));
-		}
-		for (CandyColor cc: CandyColor.values()) {
 			wc.setColor(cc);
 			images.put(wc.getFullKey(),  new Image(IMAGE_PATH + cc.toString().toLowerCase() + "Wrapped.png"));
-		}
-		for (CandyColor cc: CandyColor.values()) {
 			vc.setColor(cc);
 			images.put(vc.getFullKey(),  new Image(IMAGE_PATH + cc.toString().toLowerCase() + "VStripped.png"));
-		}
-		for (CandyColor cc: CandyColor.values()) {
 			hc.setColor(cc);
 			images.put(hc.getFullKey(),  new Image(IMAGE_PATH + cc.toString().toLowerCase() + "HStripped.png"));
-		}
+		}	
 	}
 
 	public Image getImage(Element e) {

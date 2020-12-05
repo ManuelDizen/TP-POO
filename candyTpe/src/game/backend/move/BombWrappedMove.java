@@ -27,15 +27,12 @@ public class BombWrappedMove extends Move {
 				if (i1 + i >= 0 && i1 + i < Grid.SIZE && j1 + j >= 0 && j1 + j < Grid.SIZE) {
 					clearContent(i1 + i, j1 + j);
 				}
-			}
-		}
-		for(int i = -1; i < 2; i++) {
-			for(int j = -1; j < 2; j++) {
 				if (i2 + i >= 0 && i2 + i < Grid.SIZE && j2 + j >= 0 && j2 + j < Grid.SIZE) {
 					clearContent(i2 + i, j2 + j);
 				}
 			}
 		}
+	
 	}
 
 }

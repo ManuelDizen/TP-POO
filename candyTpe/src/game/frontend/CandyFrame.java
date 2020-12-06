@@ -50,8 +50,8 @@ public class CandyFrame extends VBox {
 						Cell cell = CandyFrame.this.game.get(i, j);
 						Element element = cell.getContent();
 						Image image = images.getImage(element);
-						timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, null)));
-						timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, image)));
+						timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, null, false)));
+						timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, image, cell.isGolden())));
 					}
 					frameTime = frameTime.add(frameGap);
 				}
@@ -75,8 +75,8 @@ public class CandyFrame extends VBox {
 					System.out.println("Get second = " +  newPoint);
 					game().tryMove((int)lastPoint.getX(), (int)lastPoint.getY(), (int)newPoint.getX(), (int)newPoint.getY());
 					String score = game().getScore().toString();
-					String moves = (game().getMovesLeft()).toString();
-					String specialCells = (game().getSpecialCellsLeft()).toString();
+					String moves = game().getMovesLeft().toString();
+					String specialCells = game().getSpecialCellsLeft().toString();
 					if (game().isFinished()) {
 						if (game().playerWon()) {
 							score = score + " Finished - Player Won!";

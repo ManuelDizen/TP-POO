@@ -11,6 +11,12 @@ public class Level1 extends Grid {
 	protected GameState newState() {
 		return new Level1State(REQUIRED_SCORE);
 	}
+	
+	@Override
+	protected void fillCells() {
+		candyGenCell = new CandyGeneratorCell(this);
+		super.fillCells();
+	}
 
 	@Override
 	public boolean tryMove(int i1, int j1, int i2, int j2) {

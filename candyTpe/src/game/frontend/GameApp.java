@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class GameApp extends Application {
+	private Stage stage;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -14,12 +15,34 @@ public class GameApp extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		CandyGame game = new CandyGame(Level1.class);
-		CandyFrame frame = new CandyFrame(game);
-		Scene scene = new Scene(frame);
-		primaryStage.setResizable(false);
-		primaryStage.setScene(scene);
-		primaryStage.show();
+		this.stage = primaryStage;
+
+		ChoiceBox<String> levels = new ChoiceBox<>();
+		levels.getItems().addAll("Nivel 1","Nivel 2", "Nivel 3");
+		Button button = new Button("Jugar");
+		button.setOnAction(e -> levelSelection(levels.getValue()));
+
+		Label title = new Label("Seleccione un nivel:   ");
+		HBox menu = new HBox(title, levels, button);
+
+		StackPane stackScreen = new StackPane(menu);
+		stage.setScene(new Scene(stackScreen));
+
+		stage.setResizable(false);
+		stage.show();
+	}
+	
+	private void levelSelection(String level){
+		Class selectedLevel;
+		if (level.equals("Nivel 1"))
+			selectedLevel = Level1.class;
+		else if (level.equals("Nivel 2"))
+			selectedLevel = Level2.class;
+		else
+			selectedLevel = Level3.class;
+
+		CandyGame game = new CandyGame(selectedLevel);
+		stage.setScene(new Scene(new CandyFrame(game)));
 	}
 
 }

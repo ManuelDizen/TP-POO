@@ -10,7 +10,7 @@ public abstract class GameState {
 		this.score = this.score + value;
 	}
 	
-	public long getScore(){
+	public Long getScore(){
 		return score;
 	}
 	

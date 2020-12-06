@@ -19,7 +19,7 @@ public abstract class Grid {
 	
 	public static final int SIZE = 9;
 
-	protected Cell[][] g = new Cell[SIZE][SIZE];
+	private Cell[][] g = new Cell[SIZE][SIZE];
 	private Map<Cell, Point> gMap = new HashMap<>();
 	private GameState state;
 	private List<GameListener> listeners = new ArrayList<>();

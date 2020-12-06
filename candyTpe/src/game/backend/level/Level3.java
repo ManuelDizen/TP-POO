@@ -43,5 +43,10 @@ public class Level3 extends Grid {
         public boolean playerWon() {
             return getJailsLeft() == 0;
         }
+        
+        @Override
+        public Integer getSpecialCells() {
+            return jailsLeft;
+        }
     }
 }

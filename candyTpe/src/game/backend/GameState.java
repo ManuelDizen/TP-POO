@@ -22,9 +22,11 @@ public abstract class GameState {
 		return moves;
 	}
 	
-	public int getMovesLeft() {
+	public Integer getMovesLeft() {
 		return MAX_MOVES - moves;
 	}
+	
+	public abstract Integer getSpecialCells();
 
 	public boolean gameOver(){
 		return playerWon() || getMoves() >= MAX_MOVES;

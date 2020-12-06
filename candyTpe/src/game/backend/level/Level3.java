@@ -8,7 +8,6 @@ import game.backend.element.Wall;
 
 public class Level3 extends Grid {
 
-    private static int MAX_MOVES = 20;
     private static int CENTER = 4;
     private int jailsLeft = 8;
     private boolean hasJail[] = new boolean[SIZE];
@@ -40,16 +39,6 @@ public class Level3 extends Grid {
     }
 
     private class Level3State extends GameState {
-        private long maxMoves;
-
-        public Level3State(int maxMoves) {
-            this.maxMoves = maxMoves;
-            super.setMoves(maxMoves);
-        }
-
-        public boolean gameOver() {
-            return playerWon() || getMoves() >= maxMoves;
-        }
 
         public boolean playerWon() {
             return getJailsLeft() == 0;

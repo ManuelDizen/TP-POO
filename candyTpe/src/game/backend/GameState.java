@@ -26,6 +26,10 @@ public abstract class GameState {
 		return MAX_MOVES - moves;
 	}
 	
+	public void setMoves(int moves){
+		MAX_MOVES = moves;
+	}
+	
 	public abstract boolean gameOver();
 	
 	public abstract boolean playerWon();

@@ -1,9 +1,11 @@
 package game.backend;
 
+import game.backend.cell.CandyGeneratorCell;
 import game.backend.cell.Cell;
 import game.backend.element.Candy;
 import game.backend.element.CandyColor;
 import game.backend.element.Element;
+import game.backend.element.Wall;
 import game.backend.move.Move;
 import game.backend.move.MoveMaker;
 
@@ -17,7 +19,7 @@ public abstract class Grid {
 	
 	public static final int SIZE = 9;
 
-	private Cell[][] g = new Cell[SIZE][SIZE];
+	protected Cell[][] g = new Cell[SIZE][SIZE];
 	private Map<Cell, Point> gMap = new HashMap<>();
 	private GameState state;
 	private List<GameListener> listeners = new ArrayList<>();
@@ -27,7 +29,7 @@ public abstract class Grid {
 	private Cell candyGenCell;
 	
 	protected abstract GameState newState();
-	protected void fillCells{
+	protected void fillCells(){
 		wallCell = new Cell(this);
 		wallCell.setContent(new Wall());
 		candyGenCell = new CandyGeneratorCell(this);

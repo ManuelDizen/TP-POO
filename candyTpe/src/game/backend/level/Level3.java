@@ -6,7 +6,7 @@ import game.backend.Grid;
 public class Level3 extends Grid {
 
     private static final int MAX_CHERRIES = 2;
-    private static final int MAX_HAZELNUTS = 1;
+    private static final int MAX_HAZELNUTS = 2;
     private static final int MAX_FRUITS = MAX_CHERRIES + MAX_HAZELNUTS;
     private Cell[] fruits = new Cell[MAX_FRUITS];
     private int fruitsLeft = MAX_FRUITS;

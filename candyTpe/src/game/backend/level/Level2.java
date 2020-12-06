@@ -12,6 +12,12 @@ public class Level2 extends Grid {
     protected GameState newState() {
         return new Level2.Level2State(MAX_CELLS);
     }
+    
+    @Override
+    protected void fillCells() {
+        candyGenCell = new CandyGeneratorCell(this);
+        super.fillCells();
+    }
 
     private int getFilledCells(){
         return filledCells;

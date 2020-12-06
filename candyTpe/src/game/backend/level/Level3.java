@@ -5,14 +5,16 @@ import game.backend.Grid;
 
 public class Level3 extends Grid {
 
-    private static int CENTER = 4;
-    private int jailsLeft = 8;
-    private boolean hasJail[] = new boolean[SIZE];
+    private static final int MAX_CHERRIES = 2;
+    private static final int MAX_HAZELNUTS = 1;
+    private static final int MAX_FRUITS = MAX_CHERRIES + MAX_HAZELNUTS;
+    private Cell[] fruits = new Cell[MAX_FRUITS];
+    private int fruitsLeft = MAX_FRUITS;
 
-    public Level3(){
-        for (int i = 0; i < SIZE; i++)
-            if (i != CENTER)
-                hasJail[i] = true;
+    @Override
+    protected void fillCells() {
+        candyGenCell = new FruitGeneratorCell(this, new Cherry(), MAX_CHERRIES, new Hazelnut(), MAX_HAZELNUTS);
+        super.fillCells();
     }
 
     @Override
@@ -20,15 +22,13 @@ public class Level3 extends Grid {
         return new Level3.Level3State();
     }
 
-    private int getJailsLeft(){
-        return jailsLeft;
+    private int getFruitsLeft(){
+        return fruitsLeft;
     }
 
     @Override
     public boolean tryMove(int i1, int j1, int i2, int j2) {
         boolean ret;
-        if ((i1 == CENTER && hasJail[j1]) || (i2 == CENTER && hasJail[j2]))
-            return false;
         if (ret = super.tryMove(i1, j1, i2, j2)) {
             state().addMove();
         }
@@ -38,12 +38,12 @@ public class Level3 extends Grid {
     private class Level3State extends GameState {
 
         public boolean playerWon() {
-            return getJailsLeft() == 0;
+            return getFruitsLeft() == 0;
         }
-        
+
         @Override
         public Integer getSpecialCells() {
-            return jailsLeft;
+            return fruitsLeft;
         }
     }
 }

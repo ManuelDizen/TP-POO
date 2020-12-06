@@ -20,7 +20,7 @@ public class Level3 extends Grid {
 
     @Override
     protected GameState newState() {
-        return new Level3.Level3State(MAX_MOVES);
+        return new Level3.Level3State();
     }
 
     private int getJailsLeft(){

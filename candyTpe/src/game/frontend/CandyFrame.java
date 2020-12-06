@@ -19,6 +19,7 @@ public class CandyFrame extends VBox {
 
 	private BoardPanel boardPanel;
 	private ScorePanel scorePanel;
+	private MovesPanel movesPanel;
 	private ImageManager images;
 	private Point2D lastPoint;
 	private CandyGame game;

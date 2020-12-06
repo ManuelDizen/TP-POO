@@ -2,9 +2,14 @@ package game.frontend;
 
 import game.backend.CandyGame;
 import game.backend.level.Level1;
+import game.backend.level.Level2;
+import game.backend.level.Level3;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.scene.control.*;
 
 public class GameApp extends Application {
 	private Stage stage;

@@ -8,14 +8,13 @@ import game.backend.element.Wall;
 
 public class Level2 extends Grid {
 
-    private static int MAX_MOVES = 20;
     private static int MAX_CELLS = SIZE * SIZE;
     private int filledCells = 0;
     protected boolean isGolden[][] = new boolean[SIZE][SIZE];
 
     @Override
     protected GameState newState() {
-        return new Level2.Level2State(MAX_MOVES, MAX_CELLS);
+        return new Level2.Level2State(MAX_CELLS);
     }
 
     private int getFilledCells(){
@@ -49,15 +48,9 @@ public class Level2 extends Grid {
 
     private class Level2State extends GameState {
         private long maxCells;
-        private long maxMoves;
 
-        public Level2State(int maxMoves, int maxCells) {
-            this.maxMoves = maxMoves;
+        public Level2State(int maxCells) {
             this.maxCells = maxCells;
-        }
-
-        public boolean gameOver() {
-            return playerWon() || getMoves() >= maxMoves;
         }
 
         public boolean playerWon() {

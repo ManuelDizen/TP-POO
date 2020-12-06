@@ -40,11 +40,13 @@ public class CandyGame implements GameListener {
 		grid.addListener(listener);
 	}
 	
-	public long getScore() {
+	public Long getScore() {
 		return state.getScore();
 	}
 	
-	public long getMovesLeft(){ return state.getMovesLeft();}
+	public Integer getMovesLeft(){ return state.getMovesLeft();}
+	
+	public Integer getSpecialCellsLeft(){ return state.getSpecialCells();}
 	
 	public boolean isFinished() {
 		return state.gameOver();

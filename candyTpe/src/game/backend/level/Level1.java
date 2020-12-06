@@ -14,7 +14,7 @@ public class Level1 extends Grid {
 	
 	@Override
 	protected void fillCells() {
-		candyGenCell = new CandyGeneratorCell(this);
+		CandyGeneratorCell candyGenCell = new CandyGeneratorCell(this);
 		super.fillCells();
 	}
 

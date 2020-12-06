@@ -100,5 +100,9 @@ public class Cell {
 	public void setContent(Element content) {
 		this.content = content;
 	}
+	
+	public boolean isFruit(){
+		return this.getContent() instanceof Fruit;
+	}
 
 }

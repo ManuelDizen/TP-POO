@@ -56,5 +56,10 @@ public class Level2 extends Grid {
         public boolean playerWon() {
             return getFilledCells() == maxCells;
         }
+        
+        @Override
+        public Integer getSpecialCells() {
+            return (SIZE*SIZE) - filledCells;
+        }
     }
 }

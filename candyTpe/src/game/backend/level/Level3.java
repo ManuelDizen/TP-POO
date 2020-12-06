@@ -13,7 +13,7 @@ public class Level3 extends Grid {
 
     @Override
     protected void fillCells() {
-        candyGenCell = new FruitGeneratorCell(this, new Cherry(), MAX_CHERRIES, new Hazelnut(), MAX_HAZELNUTS);
+        FruitGeneratorCell candyGenCell = new FruitGeneratorCell(this, new Cherry(), MAX_CHERRIES, new Hazelnut(), MAX_HAZELNUTS);
         super.fillCells();
     }
 

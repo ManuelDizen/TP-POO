@@ -7,6 +7,7 @@ import game.backend.element.Element;
 
 
 public class FruitGeneratorCell extends CandyGeneratorCell{
+    private static final double FREQUENCY = 0.01;
     private Element fruit1, fruit2;
     private int max_fruits1, max_fruits2;
 
@@ -22,12 +23,14 @@ public class FruitGeneratorCell extends CandyGeneratorCell{
     @Override
     public Element getContent(){
         int i = (int)(Math.random() * CandyColor.values().length);
-        if (max_fruits1 > 0) {
+        if (max_fruits1 > 0 && Math.random() < FREQUENCY) {
             max_fruits1--;
+            this.setFruit();
             return fruit1;
         }
-        if (max_fruits2 > 0) {
+        if (max_fruits2 > 0 && Math.random() < FREQUENCY) {
             max_fruits2--;
+            this.setFruit();
             return fruit2;
         }
         return new Candy(CandyColor.values()[i]);

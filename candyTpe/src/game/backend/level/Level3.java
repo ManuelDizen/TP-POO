@@ -31,6 +31,11 @@ public class Level3 extends Grid {
         boolean ret;
         if (ret = super.tryMove(i1, j1, i2, j2)) {
             state().addMove();
+            for (int j = 0; j < SIZE-1; j++){
+                if (g()[SIZE-1][j].isFruit()){
+                    g()[SIZE-1][j].fallUpperContent();
+                }
+            }
         }
         return ret;
     }

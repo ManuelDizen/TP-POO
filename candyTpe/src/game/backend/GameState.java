@@ -4,7 +4,7 @@ public abstract class GameState {
 	
 	private long score = 0;
 	private int moves = 0;
-	private int MAX_MOVES = 20;
+	private static final int MAX_MOVES = 20;
 	
 	public void addScore(long value) {
 		this.score = this.score + value;
@@ -25,12 +25,10 @@ public abstract class GameState {
 	public int getMovesLeft() {
 		return MAX_MOVES - moves;
 	}
-	
-	public void setMoves(int moves){
-		MAX_MOVES = moves;
+
+	public boolean gameOver(){
+		return playerWon() || getMoves() >= MAX_MOVES;
 	}
-	
-	public abstract boolean gameOver();
 	
 	public abstract boolean playerWon();
 

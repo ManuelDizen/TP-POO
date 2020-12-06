@@ -27,21 +27,22 @@ public class Level2 extends Grid {
         boolean ret;
         if (ret = super.tryMove(i1, j1, i2, j2)) {
             state().addMove();
-            if (i1 == i2){
+            if (j1 == j2){
                 for (int i = 0; i < SIZE; i++) {
-                    if (isGolden[i1][i])
-                       // setGolden(i1, i);
-                    isGolden[i1][i] = true;
+                    if (!g[i][j1].isGolden()) {
+                        g[i][j1].setGolden();
+                        filledCells++;
+                    }
                 }
             }
             else{
-                for (int i = 0; i < SIZE; i++) {
-                    if (isGolden[i][j1])
-                      //  setGolden(i, j1);
-                    isGolden[i][j1] = true;
+                for (int j = 0; j < SIZE; j++) {
+                    if (!g[i1][j].isGolden()) {
+                        g[i1][j].setGolden();
+                        filledCells++;
+                    }
                 }
             }
-            //ACA APLICAR EL VOLVER LA FILA O LA COLUMNA DORADA
         }
         return ret;
     }

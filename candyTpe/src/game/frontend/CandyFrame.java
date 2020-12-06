@@ -31,6 +31,8 @@ public class CandyFrame extends VBox {
 		getChildren().add(boardPanel);
 		scorePanel = new ScorePanel();
 		getChildren().add(scorePanel);
+		movesPanel = new MovesPanel();
+		getChildren().add(movesPanel);
 		game.initGame();
 		GameListener listener;
 		game.addGameListener(listener = new GameListener() {
@@ -70,15 +72,17 @@ public class CandyFrame extends VBox {
 				if (newPoint != null) {
 					System.out.println("Get second = " +  newPoint);
 					game().tryMove((int)lastPoint.getX(), (int)lastPoint.getY(), (int)newPoint.getX(), (int)newPoint.getY());
-					String message = ((Long)game().getScore()).toString();
+					String score = ((Long)game().getScore()).toString();
+					String moves = ((Long)game().getMovesLeft()).toString();
 					if (game().isFinished()) {
 						if (game().playerWon()) {
-							message = message + " Finished - Player Won!";
+							score = score + " Finished - Player Won!";
 						} else {
-							message = message + " Finished - Loser !";
+							score = score + " Finished - Loser !";
 						}
 					}
-					scorePanel.updateScore(message);
+					scorePanel.updateScore(score);
+					movesPanel.updateMoves(moves);
 					lastPoint = null;
 				}
 			}

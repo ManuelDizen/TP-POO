@@ -18,8 +18,7 @@ public class CandyFrame extends VBox {
 	private static final int CELL_SIZE = 65;
 
 	private BoardPanel boardPanel;
-	private ScorePanel scorePanel;
-	private MovesPanel movesPanel;
+	private ResultsPanel scorePanel, movesPanel, specialCellsPanel;
 	private ImageManager images;
 	private Point2D lastPoint;
 	private CandyGame game;
@@ -30,10 +29,12 @@ public class CandyFrame extends VBox {
 		images = new ImageManager();
 		boardPanel = new BoardPanel(game.getSize(), game.getSize(), CELL_SIZE);
 		getChildren().add(boardPanel);
-		scorePanel = new ScorePanel();
+		scorePanel = new ResultsPanel("Score: ");
 		getChildren().add(scorePanel);
-		movesPanel = new MovesPanel();
+		movesPanel = new ResultsPanel("Moviemientos restantes: ");
 		getChildren().add(movesPanel);
+		specialCellsPanel = new ResultsPanel("Celdas especiales restantes: ");
+		getChildren().add(specialCellsPanel);
 		game.initGame();
 		GameListener listener;
 		game.addGameListener(listener = new GameListener() {
@@ -73,8 +74,9 @@ public class CandyFrame extends VBox {
 				if (newPoint != null) {
 					System.out.println("Get second = " +  newPoint);
 					game().tryMove((int)lastPoint.getX(), (int)lastPoint.getY(), (int)newPoint.getX(), (int)newPoint.getY());
-					String score = ((Long)game().getScore()).toString();
-					String moves = ((Long)game().getMovesLeft()).toString();
+					String score = game().getScore().toString();
+					String moves = (game().getMovesLeft()).toString();
+					String specialCells = (game().getSpecialCellsLeft()).toString();
 					if (game().isFinished()) {
 						if (game().playerWon()) {
 							score = score + " Finished - Player Won!";
@@ -82,8 +84,9 @@ public class CandyFrame extends VBox {
 							score = score + " Finished - Loser !";
 						}
 					}
-					scorePanel.updateScore(score);
-					movesPanel.updateMoves(moves);
+					scorePanel.updateLabel(score);
+					movesPanel.updateLabel(moves);
+					specialCellsPanel.updateLabel(specialCells);
 					lastPoint = null;
 				}
 			}

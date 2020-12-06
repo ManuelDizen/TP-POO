@@ -24,16 +24,16 @@ public class Level2 extends Grid {
             state().addMove();
             if (j1 == j2){
                 for (int i = 0; i < SIZE; i++) {
-                    if (!g[i][j1].isGolden()) {
-                        g[i][j1].setGolden();
+                    if (!g()[i][j1].isGolden()) {
+                        g()[i][j1].setGolden();
                         filledCells++;
                     }
                 }
             }
             else{
                 for (int j = 0; j < SIZE; j++) {
-                    if (!g[i1][j].isGolden()) {
-                        g[i1][j].setGolden();
+                    if (!g()[i1][j].isGolden()) {
+                        g()[i1][j].setGolden();
                         filledCells++;
                     }
                 }

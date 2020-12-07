@@ -74,6 +74,12 @@ public class Cell {
 	}
 	
 	private void expandExplosion(Direction[] explosion) {
+		//Si el programa entra a esta función, es que la celda es especial por lo cual si era wallBlast, se elimina el wall y actúa como celda normal
+		//Además, llamamos a deleteSpecialCell para decrementar el contador de SpecialCells
+		if (isWallBlast) {
+			setWallBlastFalse();
+			grid.deleteSpecialCell();
+		}
 		for(Direction d: explosion) {
 			this.around[d.ordinal()].explode(d);
 		}
@@ -81,6 +87,12 @@ public class Cell {
 	
 	private void explode(Direction d) {
 		clearContent();
+		//Si el programa entra a esta función, es el movimiento fue especial por lo cual si era wallBlast, se elimina el wall y actúa como celda normal
+		//Además, llamamos a deleteSpecialCell para decrementar el contador de SpecialCells
+		if (isWallBlast) {
+			setWallBlastFalse();
+			grid.deleteSpecialCell();
+		}
 		if (this.around[d.ordinal()] != null)
 			this.around[d.ordinal()].explode(d);
 	}

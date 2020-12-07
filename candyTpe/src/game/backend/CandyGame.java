@@ -44,8 +44,10 @@ public class CandyGame implements GameListener {
 		return state.getScore();
 	}
 	
+	//devuelve la cantidad de movimientos que faltan para perder el juego
 	public Integer getMovesLeft(){ return state.getMovesLeft();}
 	
+	//devuelve la cantidad de celdas especiales restantes
 	public Integer getSpecialCellsLeft(){ return state.getSpecialCells();}
 	
 	public boolean isFinished() {

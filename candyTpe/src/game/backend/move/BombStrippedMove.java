@@ -7,7 +7,8 @@ import game.backend.element.CandyColor;
 import game.backend.element.HorizontalStripedCandy;
 import game.backend.element.VerticalStripedCandy;
 
-public class BombStrippedMove extends Move {
+//BombStippedMove extiende de BombMove
+public class BombStrippedMove extends BombMove {
 
 	public BombStrippedMove(Grid grid) {
 		super(grid);
@@ -25,13 +26,8 @@ public class BombStrippedMove extends Move {
 			}
 		}
 		wasUpdated();
-		for(int i = 0; i < Grid.SIZE; i++) {
-			for(int j = 0; j < Grid.SIZE; j++) {
-				if (candy.equals(get(i, j))) {
-					clearContent(i, j);
-				}
-			}
-		}
+		//Utilizamos clearCells ya definida en BombMove
+		super.clearCells(candy);
 	}
 	
 	private Candy createStriped(CandyColor color) {

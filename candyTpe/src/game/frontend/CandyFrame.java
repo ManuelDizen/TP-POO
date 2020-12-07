@@ -25,6 +25,7 @@ public class CandyFrame extends VBox {
 	private static final int CELL_SIZE = 65;
 
 	private BoardPanel boardPanel;
+	//Agregamos los resultsPanel para mostrar en la parte inferior del juego los resultados parciales
 	private ResultsPanel scorePanel, movesPanel, specialCellsPanel;
 	private ImageManager images;
 	private Point2D lastPoint;
@@ -36,10 +37,13 @@ public class CandyFrame extends VBox {
 		images = new ImageManager();
 		boardPanel = new BoardPanel(game.getSize(), game.getSize(), CELL_SIZE);
 		getChildren().add(boardPanel);
+		//Seteo el panel de Score
 		scorePanel = new ResultsPanel("Score: ");
 		getChildren().add(scorePanel);
+		//Seteo el panel de Movimientos Restantes
 		movesPanel = new ResultsPanel("Moviemientos restantes: ");
 		getChildren().add(movesPanel);
+		//Seteo el panel de Celdas especiales restantes
 		specialCellsPanel = new ResultsPanel("Celdas especiales restantes: ");
 		getChildren().add(specialCellsPanel);
 		game.initGame();
@@ -57,7 +61,9 @@ public class CandyFrame extends VBox {
 						Cell cell = CandyFrame.this.game.get(i, j);
 						Element element = cell.getContent();
 						Image image = images.getImage(element);
+						//Agregamos los últimos dos booleanos en falso
 						timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, null, false, false)));
+						//Llamamos a los métodos isGolden e isWallBlast para setear los booleanos y ver si hay que agregar el efecto o no
 						timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, image, cell.isGolden(), cell.isWallBlast())));
 					}
 					frameTime = frameTime.add(frameGap);
@@ -85,14 +91,18 @@ public class CandyFrame extends VBox {
 					String moves = game().getMovesLeft().toString();
 					String specialCells = game().getSpecialCellsLeft().toString();
 					if (game().isFinished()) {
+						String message;
 						if (game().playerWon()) {
 							score = score + " Finished - Player Won!";
-							display("¡Ganaste!");
+							message = "¡Ganaste!";
 						} else {
 							score = score + " Finished - Loser !";
-							display("¡Perdiste!");
+							message = "¡Perdiste!";
 						}
+						//Llamamos al método display para terminar el juego
+						display(message);
 					}
+					//Updateamos los resultados
 					scorePanel.updateLabel(score);
 					movesPanel.updateLabel(moves);
 					specialCellsPanel.updateLabel(specialCells);
@@ -113,6 +123,7 @@ public class CandyFrame extends VBox {
 		return (i >= 0 && i < game.getSize() && j >= 0 && j < game.getSize()) ? new Point2D(j, i) : null;
 	}
 	
+	//Definimos el método display para mostrar un popUp cuando termina el juego para que el usuario no pueda seguir jugando.
 	public void display(String message) {
 		Stage popupwindow = new Stage();
 		popupwindow.initModality(Modality.APPLICATION_MODAL);

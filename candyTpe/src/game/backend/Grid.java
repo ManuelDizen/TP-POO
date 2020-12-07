@@ -118,6 +118,9 @@ public abstract class Grid {
 	}
 	
 	public boolean tryMove(int i1, int j1, int i2, int j2) {
+		//Si el juego terminó, no se permiten más movimientos
+		if (state.gameOver())
+			return false;
 		//Seteamos el booleano en falso
 		isSpecialMove = false;
 		Move move = moveMaker.getMove(i1, j1, i2, j2);

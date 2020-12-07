@@ -2,12 +2,10 @@ package game.backend;
 
 import game.backend.cell.CandyGeneratorCell;
 import game.backend.cell.Cell;
-import game.backend.element.Candy;
-import game.backend.element.CandyColor;
-import game.backend.element.Element;
-import game.backend.element.Wall;
+import game.backend.element.*;
 import game.backend.move.Move;
 import game.backend.move.MoveMaker;
+import game.backend.move.SpecialMove;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -27,8 +25,11 @@ public abstract class Grid {
 	private FigureDetector figureDetector;
 	private Cell wallCell;
 	private Cell candyGenCell;
+	//Booleano que indica si el movimiento que se realizó es especial o no
+	private boolean isSpecialMove;
 	
 	protected abstract GameState newState();
+	
 	protected void fillCells(){
 		wallCell = new Cell(this);
 		wallCell.setContent(new Wall());
@@ -104,6 +105,11 @@ public abstract class Grid {
 	}
 	
 	public void clearContent(int i, int j) {
+		//Si el movimiento que se realizó es especial y la celda a eliminar es wallBlast, se elimina el wallBlast y se decrementa la cantidad de special Cells.
+		if (isSpecialMove && g[i][j].isWallBlast()) {
+			g[i][j].setWallBlastFalse();
+			state.deleteSpecialCells();
+		}
 		g[i][j].clearContent();
 	}
 	
@@ -112,9 +118,14 @@ public abstract class Grid {
 	}
 	
 	public boolean tryMove(int i1, int j1, int i2, int j2) {
+		//Seteamos el booleano en falso
+		isSpecialMove = false;
 		Move move = moveMaker.getMove(i1, j1, i2, j2);
 		swapContent(i1, j1, i2, j2);
 		if (move.isValid()) {
+			//Si el movimiento es una instancia de un movimiento especial, seteamos el booleano en true
+			if (move instanceof SpecialMove)
+				isSpecialMove = true;
 			move.removeElements();
 			fallElements();
 			return true;
@@ -176,6 +187,11 @@ public abstract class Grid {
 		for (GameListener gl: listeners) {
 			gl.cellExplosion(e);
 		}
+	}
+	
+	//Decrementa las celdas especiales
+	public void deleteSpecialCell(){
+		state.deleteSpecialCells();
 	}
 
 }

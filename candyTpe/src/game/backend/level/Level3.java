@@ -5,7 +5,7 @@ import game.backend.Grid;
 import game.backend.cell.Cell;
 import game.backend.element.*;
 
-public class Level4 extends Grid {
+public class Level3 extends Grid {
     private static final int MAX_CELLS = 9;
     private static final int CENTER = 3;
     private int cellsLeft = MAX_CELLS;
@@ -109,7 +109,7 @@ public class Level4 extends Grid {
         for (int i = CENTER; i < 2 * CENTER; i++){
             for (int j = CENTER; j < 2 * CENTER; j++) {
                 if (grid[i][j].isWallBlast() && grid[i][j].getContent() instanceof Candy) {
-                    Candy aux = (Candy) grid.getContent();
+                    Candy aux = (Candy) grid[i][j].getContent();
                     if (aux.getColor().equals(color)){
                         g()[i][j].setWallBlastFalse();
                         cellsLeft--;

@@ -2,6 +2,7 @@ package game.backend.level;
 
 import game.backend.GameState;
 import game.backend.Grid;
+import game.backend.cell.Cell;
 import game.backend.element.*;
 
 public class Level4 extends Grid {
@@ -19,7 +20,7 @@ public class Level4 extends Grid {
 
     @Override
     protected GameState newState() {
-        return new Level4.Level4State();
+        return new Level3.Level3State();
     }
 
     private int getCellsLeft(){
@@ -31,26 +32,29 @@ public class Level4 extends Grid {
         boolean ret;
         Element e1 = g()[i1][j1].getContent();
         Element e2 = g()[i2][j2].getContent();
-        checkForBomb(e1, e2);
+        Cell[][] grid = g();
         if (ret = super.tryMove(i1, j1, i2, j2)) {
             state().addMove();
-            checkForSpecialCandy(e1, i2, j2);
-            checkForSpecialCandy(e2, i1, j1);
+            checkForBomb(e1, e2, grid);
+            if (e1.equals(g()[i2][j2]))
+                checkForSpecialCandy(e2, i1, j1);
+            else
+                checkForSpecialCandy(e1, i2, j2);
         }
         return ret;
     }
 
-    private void checkForBomb(Element e1, Element e2){
+    private void checkForBomb(Element e1, Element e2, Cell[][] grid){
         if (e1 instanceof Bomb && e2 instanceof Bomb){
             deleteAll();
         }
         else if (e1 instanceof Bomb && e2 instanceof Candy) {
             Candy e = (Candy) e2;
-            checkGridForWallBlast(e.getColor());
+            checkGridForWallBlast(e.getColor(), grid);
         }
         else if (e2 instanceof Bomb && e1 instanceof Candy) {
             Candy e = (Candy) e1;
-            checkGridForWallBlast(e.getColor());
+            checkGridForWallBlast(e.getColor(), grid);
         }
     }
 
@@ -101,11 +105,11 @@ public class Level4 extends Grid {
         }
     }
 
-    private void checkGridForWallBlast(CandyColor color){
+    private void checkGridForWallBlast(CandyColor color, Cell[][] grid){
         for (int i = CENTER; i < 2 * CENTER; i++){
             for (int j = CENTER; j < 2 * CENTER; j++) {
-                if (g()[i][j].isWallBlast() && g()[i][j].getContent() instanceof Candy) {
-                    Candy aux = (Candy) g()[i][j].getContent();
+                if (grid[i][j].isWallBlast() && grid[i][j].getContent() instanceof Candy) {
+                    Candy aux = (Candy) grid.getContent();
                     if (aux.getColor().equals(color)){
                         g()[i][j].setWallBlastFalse();
                         cellsLeft--;
@@ -115,7 +119,7 @@ public class Level4 extends Grid {
         }
     }
 
-    private class Level4State extends GameState {
+    private class Level3State extends GameState {
 
         public boolean playerWon() {
             return getCellsLeft() == 0;

@@ -80,8 +80,10 @@ public class CandyFrame extends VBox {
 					if (game().isFinished()) {
 						if (game().playerWon()) {
 							score = score + " Finished - Player Won!";
+							display("¡Ganaste!");
 						} else {
 							score = score + " Finished - Loser !";
+							display("¡Perdiste!");
 						}
 					}
 					scorePanel.updateLabel(score);
@@ -102,6 +104,21 @@ public class CandyFrame extends VBox {
 		double i = x / CELL_SIZE;
 		double j = y / CELL_SIZE;
 		return (i >= 0 && i < game.getSize() && j >= 0 && j < game.getSize()) ? new Point2D(j, i) : null;
+	}
+	
+	public void display(String message) {
+		Stage popupwindow = new Stage();
+		popupwindow.initModality(Modality.APPLICATION_MODAL);
+		popupwindow.setTitle("GAME OVER");
+		Label label1= new Label(message);
+		Button button1= new Button("Salir del juego.");
+		button1.setOnAction(e -> Platform.exit());
+		VBox layout= new VBox(10);
+		layout.getChildren().addAll(label1, button1);
+		layout.setAlignment(Pos.CENTER);
+		Scene scene1= new Scene(layout, 300, 250);
+		popupwindow.setScene(scene1);
+		popupwindow.showAndWait();
 	}
 
 }

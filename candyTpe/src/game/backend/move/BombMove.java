@@ -5,7 +5,7 @@ import game.backend.element.Bomb;
 import game.backend.element.Candy;
 
 //BombMove extiende de SpecialMove
-public class BombMove extends Move {
+public class BombMove extends SpecialMove {
 	
 	public BombMove(Grid grid) {
 		super(grid);

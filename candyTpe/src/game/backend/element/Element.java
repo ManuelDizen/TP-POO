@@ -24,4 +24,16 @@ public abstract class Element {
 		return 0;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Element))
+			return false;
+		Element other = (Element) obj;
+		if (this.getFullKey() != other.getFullKey())
+			return false;
+		return true;
+	}
+	
 }

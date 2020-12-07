@@ -31,11 +31,6 @@ public class Level1 extends Grid {
 		public boolean playerWon() {
 			return getScore() > requiredScore;
 		}
-		
-		@Override
-		public Integer getSpecialCells() {
-			return 0;
-		}
 	}
 
 }

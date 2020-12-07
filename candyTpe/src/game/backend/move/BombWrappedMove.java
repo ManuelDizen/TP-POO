@@ -4,7 +4,8 @@ import game.backend.Grid;
 import game.backend.element.Bomb;
 import game.backend.element.Candy;
 
-public class BombWrappedMove extends Move {
+//BombWrappedMove extiende de BombMove
+public class BombWrappedMove extends BombMove {
 
 	public BombWrappedMove(Grid grid) {
 		super(grid);	
@@ -12,16 +13,8 @@ public class BombWrappedMove extends Move {
 	
 	@Override
 	public void removeElements() {
-		Candy candy = (Candy) (get(i1, j1) instanceof Bomb ? get(i2, j2) : get(i1, j1));
-		clearContent(i1, j1);
-		clearContent(i2, j2);
-		for(int i = 0; i < Grid.SIZE; i++) {
-			for(int j = 0; j < Grid.SIZE; j++) {
-				if (candy.equals(get(i, j))) {
-					clearContent(i, j);
-				}
-			}
-		}
+		//Utilizamos el remove elements de BombMove y después agregamos la funcionaliad nueva
+		super.removeElements();
 		for(int i = -1; i < 2; i++) {
 			for(int j = -1; j < 2; j++) {
 				if (i1 + i >= 0 && i1 + i < Grid.SIZE && j1 + j >= 0 && j1 + j < Grid.SIZE) {

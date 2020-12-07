@@ -25,16 +25,21 @@ public class BoardPanel extends TilePane {
 		}
 	}
 	
+	//Agregamos dos booleanos para ver si hay que setear el efecto de golden o de wallBlast
 	public void setImage(int row, int column, Image image, boolean golden, boolean wallBlast) {
+		//Si hay que setear en golden, llamo a setColor con YELLOW
 		if (golden)
 			setColor(row, column, Color.YELLOW);
+		//Si hay que setear en wallBlast, llamo a setColor con SANDYBROWN
 		else if (wallBlast)
 			setColor(row, column, Color.SANDYBROWN);
+		//Si no hay que setear nada, seteo un efecto neutro para eliminar si la celda ya tenía un efecto anterior
 		else
 			cells[row][column].setEffect(new ColorAdjust());
 		cells[row][column].setImage(image);
 	}
 	
+	//Definimos el método setColor para modularizar
 	private void setColor(int row, int column, Color color){
 		Light.Distant spotLight = new Light.Distant();
 		spotLight.setColor(color);

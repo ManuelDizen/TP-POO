@@ -11,6 +11,7 @@ public class Cell {
 	private Cell[] around = new Cell[Direction.values().length];
 	private Element content;
 	private boolean isGolden;
+	private boolean isWallBlast;
 	
 	public Cell(Grid grid) {
 		this.grid = grid;
@@ -46,6 +47,18 @@ public class Cell {
 
 	public boolean isGolden(){
 		return isGolden;
+	}
+	
+	public boolean isWallBlast(){
+		return isWallBlast;
+	}
+
+	public void setWallBlast(){
+		isWallBlast = true;
+	}
+
+	public void setWallBlastFalse(){
+		isWallBlast = false;
 	}
 	
 	public void clearContent() {
@@ -101,8 +114,5 @@ public class Cell {
 		this.content = content;
 	}
 	
-	public boolean isFruit(){
-		return this.getContent() instanceof Fruit;
-	}
 
 }

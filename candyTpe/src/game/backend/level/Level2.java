@@ -5,8 +5,8 @@ import game.backend.Grid;
 
 public class Level2 extends Grid {
 
+    //Cantidad máxima de celdas del tablero
     private static int MAX_CELLS = SIZE * SIZE;
-    private int filledCells = 0;
 
     @Override
     protected GameState newState() {
@@ -22,19 +22,21 @@ public class Level2 extends Grid {
         boolean ret;
         if (ret = super.tryMove(i1, j1, i2, j2)) {
             state().addMove();
+            //Si j1 = j2, significa que el movimiento fue vertical por lo cual seteamos la columna en dorado
             if (j1 == j2){
                 for (int i = 0; i < SIZE; i++) {
                     if (!g()[i][j1].isGolden()) {
                         g()[i][j1].setGolden();
-                        filledCells++;
+                        this.deleteSpecialCell();
                     }
                 }
             }
+            //Si j1 != j2, significa que el movimiento fue horizontal por lo cual seteamos la fila en dorado
             else{
                 for (int j = 0; j < SIZE; j++) {
                     if (!g()[i1][j].isGolden()) {
                         g()[i1][j].setGolden();
-                        filledCells++;
+                        this.deleteSpecialCell();
                     }
                 }
             }
@@ -43,19 +45,14 @@ public class Level2 extends Grid {
     }
 
     private class Level2State extends GameState {
-        private long maxCells;
-
+        //Seteamos las specialCells (tomamos como que una celda normal es especial y las doradas son las normales)
         public Level2State(int maxCells) {
-            this.maxCells = maxCells;
+            this.setSpecialCells(maxCells);
         }
 
+        //El jugador gana si no hay mas celdas normales (en este caso sería si las especiales son 0)
         public boolean playerWon() {
-            return getFilledCells() == maxCells;
-        }
-        
-        @Override
-        public Integer getSpecialCells() {
-            return (SIZE*SIZE) - filledCells;
+            return this.getSpecialCells() == 0;
         }
     }
 }

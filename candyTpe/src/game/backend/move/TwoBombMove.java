@@ -2,7 +2,8 @@ package game.backend.move;
 
 import game.backend.Grid;
 
-public class TwoBombMove extends Move {
+//TwoBombMove extiende de SpecialMove (no de BombMove porque tienen funcionalidades distintas)
+public class TwoBombMove extends SpecialMove {
 	
 	public TwoBombMove(Grid grid) {
 		super(grid);

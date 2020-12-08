@@ -7,7 +7,6 @@ import game.backend.level.Level3;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
@@ -49,7 +48,7 @@ public class GameApp extends Application {
 	}
 	
 	public Stage getStage() {
-		return Stage;	
+		return stage;	
 	}
 	
 	//Recibe la opción del choiceBox e inicia el nivel correspondiente

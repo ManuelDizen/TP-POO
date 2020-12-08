@@ -137,7 +137,10 @@ public class CandyFrame extends VBox {
 		popupwindow.setTitle("GAME OVER");
 		Label label1= new Label(message);
 		Button button1= new Button("Salir del juego.");
-		button1.setOnAction(e -> Platform.exit());
+		button1.setOnAction(e -> {
+			Platform.exit();
+			popupwindow.close();
+		});
 		Button button2= new Button("Volver a jugar");
 		EventHandler<ActionEvent> event = e -> {
 			app.restart(app.getStage());

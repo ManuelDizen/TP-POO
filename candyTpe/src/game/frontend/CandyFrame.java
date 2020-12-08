@@ -8,6 +8,8 @@ import game.backend.element.Element;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -137,12 +139,9 @@ public class CandyFrame extends VBox {
 		Button button1= new Button("Salir del juego.");
 		button1.setOnAction(e -> Platform.exit());
 		Button button2= new Button("Volver a jugar");
-		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e)
-			{
-				app.restart(app.getStage());
-				popupwindow.close();
-			}
+		EventHandler<ActionEvent> event = e -> {
+			app.restart(app.getStage());
+			popupwindow.close();
 		};
 		button2.setOnAction(event);
 		VBox layout= new VBox(10);

@@ -1,6 +1,6 @@
 package game.frontend;
 
-import game.backend.element.*
+import game.backend.element.*;
 import javafx.scene.image.Image;
 
 import java.util.HashMap;

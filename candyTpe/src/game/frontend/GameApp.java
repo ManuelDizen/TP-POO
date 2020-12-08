@@ -63,7 +63,9 @@ public class GameApp extends Application {
 			selectedLevel = Level3.class;
 
 		CandyGame game = new CandyGame(selectedLevel);
-		stage.setScene(new Scene(new CandyFrame(game)));
+		CandyFrame frame = new CandyFrame(game);
+		frame.addApp(this);
+		stage.setScene(new Scene(frame));
 	}
 
 }

@@ -26,6 +26,8 @@ public class GameApp extends Application {
 		ChoiceBox<String> levels = new ChoiceBox<>();
 		//Añadimos los niveles
 		levels.getItems().addAll("Básico","Golden Board", "Wall Blast");
+		//Seteamos que aparezca el nivel básico como opción default en la choicebox 
+		levels.getSelectionModel().select(0);
 		//Creamos el boton jugar
 		Button button = new Button("Jugar");
 		//Cuando se apriete el botón, se obtiene el valor del choiceBox

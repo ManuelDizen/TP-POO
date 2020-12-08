@@ -5,7 +5,7 @@ public abstract class GameState {
 	private long score = 0;
 	private int moves = 0;
 	//Cantiad de movimientos por default (de todas formas, definimos el método setMaxMoves para que se pueda modificar en los niveles)
-	private static final int MAX_MOVES = 20;
+	private static int MAX_MOVES = 20;
 	//Cantiad de celdas especiales por default (de todas formas, definimos el método setSpecialCells para que se pueda modificar en los niveles)
 	private int specialCells = 0;
 	

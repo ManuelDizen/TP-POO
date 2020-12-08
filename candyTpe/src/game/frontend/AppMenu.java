@@ -30,8 +30,8 @@ public class AppMenu extends MenuBar {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Acerca De");
             alert.setHeaderText("Candy TPE");
-            alert.setContentText("Cátedra POO 2018.\n" +
-                    "Implementación Original: Laura Zabaleta (POO 2013).");
+            alert.setContentText("Cátedra POO 2018.\n" + "\n" +
+                    "Implementación Original: Laura Zabaleta (POO 2013).\n" + "\n" + "Modificaciones realizadas por: Milagros Cornidez, Franco De Simone y Manuel Dizenhaus (POO 2020)");
             alert.showAndWait();
         });
         help.getItems().add(aboutMenuItem);

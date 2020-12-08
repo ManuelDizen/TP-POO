@@ -13,10 +13,6 @@ public class Level2 extends Grid {
         return new Level2.Level2State(MAX_CELLS);
     }
 
-    private int getFilledCells(){
-        return filledCells;
-    }
-
     @Override
     public boolean tryMove(int i1, int j1, int i2, int j2) {
         boolean ret;

@@ -44,6 +44,14 @@ public class GameApp extends Application {
 		stage.show();
 	}
 	
+	public void restart(Stage primaryStage) {
+		start(primaryStage);	
+	}
+	
+	public Stage getStage() {
+		return Stage;	
+	}
+	
 	//Recibe la opción del choiceBox e inicia el nivel correspondiente
 	private void levelSelection(String level){
 		Class selectedLevel;

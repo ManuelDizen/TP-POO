@@ -30,6 +30,7 @@ public class CandyFrame extends VBox {
 	private ImageManager images;
 	private Point2D lastPoint;
 	private CandyGame game;
+	private GameApp app;
 
 	public CandyFrame(CandyGame game) {
 		this.game = game;
@@ -116,6 +117,10 @@ public class CandyFrame extends VBox {
 	private CandyGame game() {
 		return game;
 	}
+	
+	public void addApp(GameApp app) {
+		this.app = app;
+	}
 
 	private Point2D translateCoords(double x, double y) {
 		double i = x / CELL_SIZE;
@@ -131,12 +136,22 @@ public class CandyFrame extends VBox {
 		Label label1= new Label(message);
 		Button button1= new Button("Salir del juego.");
 		button1.setOnAction(e -> Platform.exit());
+		Button button2= new Button("Volver a jugar");
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e)
+			{
+				app.restart(app.getStage());
+				popupwindow.close();
+			}
+		};
+		button2.setOnAction(event);
 		VBox layout= new VBox(10);
-		layout.getChildren().addAll(label1, button1);
+		layout.getChildren().addAll(label1, button1, button2);
 		layout.setAlignment(Pos.CENTER);
 		Scene scene1= new Scene(layout, 300, 250);
 		popupwindow.setScene(scene1);
 		popupwindow.showAndWait();
 	}
+	
 
 }
